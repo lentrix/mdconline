@@ -1,0 +1,26 @@
+/* Custom styles... */
+
+.container-wrap {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 2.5rem;
+}
+
+footer {
+    background-color: #333;
+    font-size: 0.9em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    line-height: 2.5em;
+    height: 2.5em;
+    color: #888;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.instructions {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #888;
+}

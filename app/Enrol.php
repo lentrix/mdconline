@@ -13,6 +13,10 @@ class Enrol extends Model
         return $this->belongsTo('App\Student');
     }
 
+    public function verifiedBy() {
+        return $this->belongsTo('App\User');
+    }
+
     public static function programList() {
         return [
             'BSA' => 'Bachelor of Science in Accountancy',
@@ -33,6 +37,16 @@ class Enrol extends Model
             'BSED-Fil'=>'Bachelor of Secondary Education Major in Filipino',
             'BSED-Soc'=>'Bachelor of Secondary Education Major in Social Studies',
             'BSED-Val'=>'Bachelor of Secondary Education Major in Values Education',
+        ];
+    }
+
+    public static function status() {
+        return [
+            'pending' => $pd = Enrol::where('status','pending')->count(),
+            'processing' => $pr = Enrol::where('status','processing')->count(),
+            'finalized' => $fn = Enrol::where('status','finalized')->count(),
+            'verified' => $vr = Enrol::whereNotNull('user_id')->count(),
+            'total' => $pd+$pr+$fn,
         ];
     }
 }

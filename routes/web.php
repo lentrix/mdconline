@@ -29,4 +29,6 @@ Route::group(['middleware'=>'auth'], function() {
     Route::get('/dashboard', 'UserController@dashboard');
 
     Route::get('/logout', 'UserController@logout');
+
+    Route::get('/enrol/{enrol}', 'EnrolmentController@show');
 });

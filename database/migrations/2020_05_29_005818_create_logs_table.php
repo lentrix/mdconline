@@ -18,6 +18,9 @@ class CreateLogsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('enrol_id')->unsigned();
             $table->string('log');
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('enrol_id')->references('id')->on('enrols');
             $table->timestamps();
         });
     }

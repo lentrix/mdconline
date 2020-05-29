@@ -43,6 +43,7 @@ class UserController extends Controller
         return view('users.dashboard', [
             'status' => $status,
             'enrols' => $enrols->get(),
+            'counts' => Enrol::status()
         ]);
     }
 

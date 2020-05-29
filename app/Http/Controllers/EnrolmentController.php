@@ -66,4 +66,8 @@ class EnrolmentController extends Controller
 
         return view('enrol.confirm', compact('enrol'));
     }
+
+    public function show(Enrol $enrol) {
+        return view('enrol.view', compact('enrol'));
+    }
 }

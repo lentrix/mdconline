@@ -19,13 +19,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('announcements')}}">Announcements</a>
                 </li>
+
+                @if(auth()->guest())
                 <li class="nav-item">
-                    @if(auth()->guest())
-                        <a class="nav-link" href="{{url('/login')}}">Login</a>
-                    @else
-                        <a class="nav-link" href="{{url('/logout')}}">Logout</a>
-                    @endif
+                    <a class="nav-link" href="{{url('/login')}}">Login</a>
                 </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/dashboard')}}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url('/logout')}}">Logout</a>
+                </li>
+                @endif
+
             </ul>
         </div>
     </div>

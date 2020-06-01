@@ -22,15 +22,20 @@ Route::post('/login','UserController@login');
 
 Route::get('/enrol/create/{student}', 'EnrolmentController@create');
 Route::post('/enrol/store', 'EnrolmentController@store');
+Route::get('/enrol/{enrol}', 'EnrolmentController@review');
+Route::get('/registration', 'StudentController@create');
+Route::post('/registration', 'StudentController@store');
 Route::get('/enrol', 'EnrolmentController@index');
-Route::post('/enrol', 'EnrolmentController@verify');
+Route::post('/enrol/verify', 'EnrolmentController@verify');
+
 
 Route::group(['middleware'=>'auth'], function() {
     Route::get('/dashboard', 'UserController@dashboard');
 
     Route::get('/logout', 'UserController@logout');
 
-    Route::get('/enrol/{enrol}', 'EnrolmentController@show');
+    Route::get('/backend/enrol/{enrol}', 'EnrolmentController@show');
+
 
     Route::group(['middleware'=>'finance'], function() {
         Route::post('/verify-payment', 'EnrolmentController@verifyPayment');

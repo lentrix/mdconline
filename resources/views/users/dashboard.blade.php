@@ -50,7 +50,7 @@
                     <td>{{$enrol->program}}</td>
                     <td class="text-center">{{$enrol->level}}</td>
                     <td class="text-center">
-                        <a href='{{url("/enrol/$enrol->id")}}' class="btn btn-sm btn-secondary" title="Open Transaction">
+                        <a href='{{url("/backend/enrol/$enrol->id")}}' class="btn btn-sm btn-secondary" title="Open Transaction">
                             &#128194;
                         </a>
                     </td>

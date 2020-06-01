@@ -9,14 +9,17 @@
     <div class="col-md-8">
         <div class="alert alert-info" style="font-size: 1.1em">
             <strong>Please Note!</strong> <br>
-            MDC Online Enrolment is intended only for current/returning MDC students.
-            Freshmen and Transferees cannot use this facility. Instead, you are
-            requested to personally process your enrolment in the MDC campus.
+            <p>This facility is intended only for current/returning MDC students.</p>
+            <p>
+                <a href="{{url('/registration')}}" class="btn btn-success">
+                    Freshmen &amp; Transferees Click Here
+                </a>
+            </p>
         </div>
     </div>
 </div>
 
-{!! Form::open(['url'=>'/enrol', 'method'=>'post']) !!}
+{!! Form::open(['url'=>'/enrol/verify', 'method'=>'post']) !!}
 
 <div class="form-group row">
     <div class="col-md-4">

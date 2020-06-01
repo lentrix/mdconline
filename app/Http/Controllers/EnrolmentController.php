@@ -26,6 +26,7 @@ class EnrolmentController extends Controller
             if(strcasecmp($stud->lname,$request['lname'])==0 && strcasecmp($stud->fname,$request['fname'])==0) {
 
                 $enrol = Enrol::where('student_id', $request['idnum'])->first();
+
                 if($enrol) {
                     return redirect("/enrol/$enrol->id");
                 }else {
@@ -41,7 +42,11 @@ class EnrolmentController extends Controller
     }
 
     public function create(Student $student) {
-        return view('enrol.create', compact('student'));
+        $isNew = session('new-student');
+        return view('enrol.create', [
+            'student' => $student,
+            'isNew' => $isNew
+        ]);
     }
 
     public function store(Request $request) {
@@ -62,9 +67,9 @@ class EnrolmentController extends Controller
             'code' => Str::random(8),
         ]);
 
-        $request->file->storeAs('proofs', $enrol->id . ".jpg");
+        $request->file->storeAs("payments/" . $enrol->id, "payment.jpg");
 
-        return view('enrol.confirm', compact('enrol'));
+        return redirect("/enrol/$enrol->id");
     }
 
     public function show(Enrol $enrol) {
@@ -78,5 +83,9 @@ class EnrolmentController extends Controller
         $enrol->save();
 
         return redirect('/dashboard')->with('Info',"The payment of Enrol ID: $enrol->id, {$enrol->student->fullName} has been verified");
+    }
+
+    public function review(Enrol $enrol) {
+        return view('enrol.confirm', compact('enrol'));
     }
 }

@@ -66,7 +66,7 @@
 <div class="form-group row">
     <div class="col-md-6">
         {{Form::label('file','Proof of Payment (File)')}}
-        {{Form::file('file',['class'=>'form-control'])}}
+        {{Form::file('file',['class'=>'form-control','accept'=>'.jpg'])}}
     </div>
     <div class="col-md-4 instructions mt-auto">
         Scanned copy or picture of the proof of payment

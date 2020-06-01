@@ -22,10 +22,14 @@ class CreateEnrolsTable extends Migration
             $table->string('level', 1);
             $table->string('status',20)->default('pending');
             $table->string('code', 8);
-            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->bigInteger('payment_verified_by')->unsigned()->nullable();
+            $table->bigInteger('records_verified_by')->unsigned()->nullable();
+            $table->bigInteger('processed_by')->unsigned()->nullable();
 
             $table->foreign('student_id')->references('id')->on('students');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('payment_verified_by')->references('id')->on('users');
+            $table->foreign('records_verified_by')->references('id')->on('users');
+            $table->foreign('processed_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

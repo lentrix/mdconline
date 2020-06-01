@@ -16,7 +16,9 @@ class User extends Authenticatable
         'CABM-H'    => ['BSHRM','BSTM','BSHM'],
         'CCJ'       => ['BSCrim'],
         'COE'       => ['BEED','BSED-Fil','BSED-Val','BSED-Math','BSED-Soc','BSED-Eng','BSED-Sci'],
-        'CON'       => ['BSN']
+        'CON'       => ['BSN'],
+        'finance',
+        'registrar'
     ];
 
     /**

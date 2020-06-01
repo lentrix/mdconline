@@ -7,10 +7,10 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{url('/')}}">Home</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="{{url('/status')}}">Status</a>
                 </li>
                 <li class="nav-item">
@@ -29,7 +29,7 @@
                     <a class="nav-link" href="{{url('/dashboard')}}">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{url('/logout')}}">Logout</a>
+                    <a class="nav-link" href="{{url('/logout')}}">[Logout : {{auth()->user()->username}}]</a>
                 </li>
                 @endif
 

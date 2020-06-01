@@ -13,8 +13,36 @@ class Enrol extends Model
         return $this->belongsTo('App\Student');
     }
 
-    public function verifiedBy() {
+    public function user() {
         return $this->belongsTo('App\User');
+    }
+
+    public function paymentVerifiedBy() {
+        return $this->belongsTo('App\User','payment_verified_by');
+    }
+
+    public function recordsVerifiedBy() {
+        return $this->belongsTo('App\User','records_verified_by');
+    }
+
+    public function processedBy() {
+        return $this->belongsTo('App\User','processed_by');
+    }
+
+    public function verificationStatus() {
+        if($this->payment_verified_by) {
+            return "by " . $this->paymentVerifiedBy->fullname;
+        }else {
+            return "Not verified";
+        }
+    }
+
+    public function recordsStatus() {
+        if($this->records_verified_by) {
+            return "by " . $this->recordsVerifiedBy->fullname;
+        }else {
+            return "Not verified";
+        }
     }
 
     public static function programList() {
@@ -45,7 +73,8 @@ class Enrol extends Model
             'pending' => $pd = Enrol::where('status','pending')->count(),
             'processing' => $pr = Enrol::where('status','processing')->count(),
             'finalized' => $fn = Enrol::where('status','finalized')->count(),
-            'verified' => $vr = Enrol::whereNotNull('user_id')->count(),
+            'payment_verified' => $vr = Enrol::whereNotNull('payment_verified_by')->count(),
+            'records_verified' => $vr = Enrol::whereNotNull('records_verified_by')->count(),
             'total' => $pd+$pr+$fn,
         ];
     }

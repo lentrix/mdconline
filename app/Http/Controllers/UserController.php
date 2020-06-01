@@ -34,8 +34,10 @@ class UserController extends Controller
         $status = isset($_GET['status']) ? $_GET['status'] : 'pending';
         $enrols = Enrol::where('status', $status)->with('student');
 
-        if(strcasecmp(auth()->user()->scope,"all")!=0) {
-            $enrols->whereIn('program', User::scope()[auth()->user()->scope]);
+        if(!in_array(auth()->user()->scope, ['all','finance','registrar'])) {
+            $enrols->whereIn('program', User::scopes()[auth()->user()->scope])
+                ->whereNotNull('payment_verified_by')
+                ->whereNotNull('records_verified_by');
         }
 
         $enrols->orderBy('created_at');

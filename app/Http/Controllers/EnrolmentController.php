@@ -62,12 +62,21 @@ class EnrolmentController extends Controller
             'code' => Str::random(8),
         ]);
 
-        $request->file->storeAs('proofs', $enrol->id . "." . $request->file->extension());
+        $request->file->storeAs('proofs', $enrol->id . ".jpg");
 
         return view('enrol.confirm', compact('enrol'));
     }
 
     public function show(Enrol $enrol) {
         return view('enrol.view', compact('enrol'));
+    }
+
+    public function verifyPayment(Request $request) {
+        $enrol = Enrol::findOrFail($request['id']);
+
+        $enrol->payment_verified_by = auth()->user()->id;
+        $enrol->save();
+
+        return redirect('/dashboard')->with('Info',"The payment of Enrol ID: $enrol->id, {$enrol->student->fullName} has been verified");
     }
 }

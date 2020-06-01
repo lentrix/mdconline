@@ -20,7 +20,7 @@
                 <th>Finalized Enrolment</th><td class="text-center">{{$counts['finalized']}}</td>
             </tr>
             <tr>
-                <th>Payment Verified</th><td class="text-center">{{$counts['verified']}}</td>
+                <th>Payment Verified</th><td class="text-center">{{$counts['payment_verified']}}</td>
             </tr>
             <tr style="font-size: 1.2em">
                 <th>Total Transactions</th>

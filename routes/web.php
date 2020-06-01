@@ -31,4 +31,8 @@ Route::group(['middleware'=>'auth'], function() {
     Route::get('/logout', 'UserController@logout');
 
     Route::get('/enrol/{enrol}', 'EnrolmentController@show');
+
+    Route::group(['middleware'=>'finance'], function() {
+        Route::post('/verify-payment', 'EnrolmentController@verifyPayment');
+    });
 });

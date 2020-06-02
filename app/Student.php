@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = ['lname','fname','mname','idext'];
+    protected $fillable = ['id', 'lname','fname','mname','idext'];
+    public $dates = ['create_at', 'updated_at'];
 
     public function enrol() {
         return $this->hasOne('App\Enrol');

@@ -88,4 +88,13 @@ class EnrolmentController extends Controller
     public function review(Enrol $enrol) {
         return view('enrol.confirm', compact('enrol'));
     }
+
+    public function verifyRecords(Request $request) {
+        $enrol = Enrol::findOrFail($request['id']);
+
+        $enrol->records_verified_by = auth()->user()->id;
+        $enrol->save();
+
+        return redirect("/backend/enrol/$enrol->id")->with('Info','The records for this enrolment has been verified.');
+    }
 }

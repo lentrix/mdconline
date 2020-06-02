@@ -48,7 +48,7 @@ class CreateInfosTable extends Migration
             $table->string('grad_sy', 10)->nullable();
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('students');
+            $table->foreign('id')->references('id')->on('students')->onUpdate('cascade');
             $table->primary('id');
         });
     }

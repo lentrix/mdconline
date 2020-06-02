@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Info;
 use App\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
@@ -82,5 +83,33 @@ class StudentController extends Controller
             $request->form137->storeAs("docs/" . $st->id, "form137.jpg");
 
         return redirect("/enrol/create/$st->id")->with('new-student', true);
+    }
+
+    public function view(Student $student) {
+        $info = Info::find($student->id);
+
+        return view('students.view', [
+            'student' => $student,
+            'info' => $info
+        ]);
+    }
+
+    public function updateID(Student $student, Request $request) {
+        $this->validate($request, [
+            'id' => 'required|numeric',
+        ]);
+
+        $oldId = $student->id;
+
+        $student->update([
+            'id' => $request['id'],
+            'idext' => $request['idext']
+        ]);
+
+        //update documents folder..
+        if(Storage::exists("docs/$oldId"))
+            Storage::move('docs/' . $oldId, "docs/$student->id");
+
+        return redirect("/backend/student/$student->id")->with('Info','The student ID has been updated.');
     }
 }

@@ -17,7 +17,9 @@
                 <td>
                     {{str_pad($enrol->student->id,7,'0',STR_PAD_LEFT)}}
                     @if(auth()->user()->scope=="registrar")
-                        <a href='{{url("/backend/student/{$enrol->student->id}")}}' class="btn btn-sm btn-secondary float-right">&#128196;</a>
+                        <a href='{{url("/backend/student/{$enrol->student->id}")}}'
+                                class="btn btn-sm btn-info float-right"
+                                title="View student record.">&#128196;</a>
                     @endif
                 </td>
             </tr>
@@ -57,7 +59,7 @@
                         <div class="float-right">
                             {!! Form::open(['url'=>'/verify-payment', 'method'=>'post']) !!}
                                 {{Form::hidden('id', $enrol->id)}}
-                                <button type="submit" title="Verify Payment">&#9989;</button>
+                                <button type="submit" title="Verify Payment">&#10004;</button>
                             {!! Form::close() !!}
                         </div>
                     @endif
@@ -65,7 +67,17 @@
             </tr>
             <tr>
                 <th>Records Verified</th>
-                <td>{{$enrol->recordsStatus()}}</td>
+                <td>
+                    {{$enrol->recordsStatus()}}
+                    @if(auth()->user()->scope=="registrar" && !$enrol->records_verified_by)
+                        <div class="float-right">
+                            {!! Form::open(['url'=>'/verify-records', 'method'=>'post']) !!}
+                                {{Form::hidden('id', $enrol->id)}}
+                                <button type="submit" title="Verify Records">&#10004;</button>
+                            {!! Form::close() !!}
+                        </div>
+                    @endif
+                </td>
             </tr>
         </table>
     </div>

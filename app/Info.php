@@ -14,6 +14,8 @@ class Info extends Model
         'tertiary_school','tertiary_address','tertiary_sy','grad_school','grad_address','grad_sy',
     ];
 
+    public $dates = ['bdate', 'created_at', 'updated_at'];
+
     public function student() {
         return $this->belongsTo('App\Student','id');
     }

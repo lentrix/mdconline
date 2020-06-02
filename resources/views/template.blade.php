@@ -25,6 +25,14 @@
             </div>
         @endif
 
+        @if (session('Info'))
+            <div class="alert alert-info">
+                <div class="container">
+                    {{ session('Info') }}
+                </div>
+            </div>
+        @endif
+
         @if(session('errors'))
             <div class="alert alert-danger">
                 <div class="container">

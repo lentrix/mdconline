@@ -13,7 +13,7 @@
             <tr>
                 <th>Pending Enrolment</th>
                 <td class="text-center">
-                    <a href="'{{url("/dashboard?status=pending")}}'" class="badge badge-primary">{{$counts['pending']}}</a>
+                    <a href='{{url("/dashboard?status=pending")}}' class="badge badge-primary">{{$counts['pending']}}</a>
                 </td>
             </tr>
             <tr>
@@ -23,10 +23,16 @@
                 </td>
             </tr>
             <tr>
-                <th>Finalized Enrolment</th><td class="text-center">{{$counts['finalized']}}</td>
+                <th>Finalized Enrolment</th>
+                <td class="text-center">
+                    <a href='{{url("/dashboard?status=finalized")}}'' class="badge badge-primary">{{$counts['finalized']}}</a>
+                </td>
             </tr>
             <tr>
                 <th>Payment Verified</th><td class="text-center">{{$counts['payment_verified']}}</td>
+            </tr>
+            <tr>
+                <th>Records Verified</th><td class="text-center">{{$counts['records_verified']}}</td>
             </tr>
             <tr style="font-size: 1.2em">
                 <th>Total Transactions</th>
@@ -35,7 +41,10 @@
         </table>
     </div>
     <div class="col-md-9">
-        <h3>Transactions: {{strtoupper($status)}}</h3>
+        <h3>Transactions: {{strtoupper($status)}} ({{auth()->user()->scope}})</h3>
+        <p class="alert alert-info">
+            Note: This list does not include unverified transactions.
+        </p>
         <table class="table table-bordered">
             <thead>
                 <tr class="bg-primary">

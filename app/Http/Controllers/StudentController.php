@@ -88,6 +88,10 @@ class StudentController extends Controller
     public function view(Student $student) {
         $info = Info::find($student->id);
 
+        if(!$info) {
+            return redirect()->back()->with('Error','There is no information to show because this student did not register online.');
+        }
+
         return view('students.view', [
             'student' => $student,
             'info' => $info

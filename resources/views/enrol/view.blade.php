@@ -81,7 +81,7 @@
             </tr>
         </table>
 
-        @if(auth()->user()->inScope($enrol->program) && in_array($enrol->status, ["pending","processing"]))
+        @if(!in_array(auth()->user()->scope, ['finance','registrar','all']) && auth()->user()->inScope($enrol->program) && in_array($enrol->status, ["pending","processing"]))
         <a href='{{url("/backend/process/$enrol->id")}}' class="btn btn-primary">
             Process Enrolment
         </a>
@@ -102,6 +102,13 @@
         @endforeach
     </div>
 </div>
+
+@if($enrol->status=="finalized")
+
+<hr>
+<h3>Generated Study Load</h3>
+<img src='{{asset("storage/study_load/$enrol->id.jpg")}}' alt="Study Load" style="width: 90%;">
+@endif
 
 @stop
 

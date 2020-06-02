@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-md-5">
         <h3>Enrolment Details</h3>
-        <table class="table table-bordered">
+        <table class="table table-bordered table-sm">
             <tr>
                 <th>ID Number</th>
                 <td>

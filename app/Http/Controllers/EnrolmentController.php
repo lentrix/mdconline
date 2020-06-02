@@ -30,7 +30,7 @@ class EnrolmentController extends Controller
                 $enrol = Enrol::where('student_id', $request['idnum'])->first();
 
                 if($enrol) {
-                    return redirect("/enrol/$enrol->id");
+                    return redirect("/status")->with('Info','You already have an enrolment transaction. Please enter the access code to view it.');
                 }else {
                     return redirect("/enrol/create/$stud->id");
                 }
@@ -71,7 +71,7 @@ class EnrolmentController extends Controller
 
         $request->file->storeAs("payments/" . $enrol->id, "payment.jpg");
 
-        return redirect("/enrol/$enrol->id");
+        return redirect("/enrol/$enrol->id")->with('first', true);
     }
 
     public function show(Enrol $enrol) {
@@ -88,7 +88,11 @@ class EnrolmentController extends Controller
     }
 
     public function review(Enrol $enrol) {
-        return view('enrol.confirm', compact('enrol'));
+        if(session('first'))
+            return view('enrol.confirm', compact('enrol'));
+        else {
+            return redirect("/status")->with('Info','You already have an enrolment transaction. Please enter the access code to view it.');
+        }
     }
 
     public function verifyRecords(Request $request) {

@@ -11,6 +11,8 @@ class User extends Authenticatable
     use Notifiable;
 
     public static $scopes = [
+        'ELEM'      => ['PREP', 'ELEM'],
+        'HS'        => ['JHS','SHS'],
         'CAST'      => ['BSIT','BSCS','BSIS','BSMath'],
         'CABM-B'    => ['BSBA-MM','BSBA-FM','BSA','BSC-MA'],
         'CABM-H'    => ['BSHRM','BSTM','BSHM'],

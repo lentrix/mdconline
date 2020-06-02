@@ -51,13 +51,7 @@
 <div class="form-group row">
     <div class="col-md-6">
         {{Form::label('level','Year Level')}}
-        {{Form::select('level',[
-            '1' => 'First Year',
-            '2' => 'Second Year',
-            '3' => 'Third Year',
-            '4' => 'Fourth Year',
-            'Q' => 'Qualifying'
-    ],null,['class'=>'form-control','placeholder'=>'Select Year Level'])}}
+        {{Form::select('level',\App\Enrol::levelList(),null,['class'=>'form-control','placeholder'=>'Select Year Level'])}}
     </div>
     <div class="col-md-4 instructions mt-auto">
 

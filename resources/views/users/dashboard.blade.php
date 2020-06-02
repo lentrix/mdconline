@@ -17,7 +17,7 @@
                 </td>
             </tr>
             <tr>
-                <th>Enrolment Under Processing</th>
+                <th>Under Processing</th>
                 <td class="text-center">
                     <a href='{{url("/dashboard?status=processing")}}' class="badge badge-primary">{{$counts['processing']}}</a>
                 </td>
@@ -42,9 +42,13 @@
     </div>
     <div class="col-md-9">
         <h3>Transactions: {{strtoupper($status)}} ({{auth()->user()->scope}})</h3>
+
+        @if(!in_array(auth()->user()->scope, ['all','registrar','finance']))
         <p class="alert alert-info">
             Note: This list does not include unverified transactions.
         </p>
+        @endif
+
         <table class="table table-bordered">
             <thead>
                 <tr class="bg-primary">

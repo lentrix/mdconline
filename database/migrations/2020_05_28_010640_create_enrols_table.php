@@ -19,7 +19,8 @@ class CreateEnrolsTable extends Migration
             $table->string('email');
             $table->string('phone', 15);
             $table->string('program', 15);
-            $table->string('level', 1);
+            $table->string('specialization')->nullable(); //i.e. track and strand
+            $table->string('level', 2);
             $table->string('status',20)->default('pending');
             $table->string('code', 8);
             $table->bigInteger('payment_verified_by')->unsigned()->nullable();

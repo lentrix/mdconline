@@ -9,10 +9,10 @@
     <div class="col-md-8">
         <div class="alert alert-info" style="font-size: 1.1em">
             <strong>Please Note!</strong> <br>
-            <p>This facility is intended only for current/returning MDC students.</p>
+            <p>The form below are for existing college students only.</p>
             <p>
                 <a href="{{url('/registration')}}" class="btn btn-success">
-                    Freshmen &amp; Transferees Click Here
+                    Freshmen, Transferees, Elementary &amp; High School - Click Here
                 </a>
             </p>
         </div>

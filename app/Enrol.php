@@ -47,6 +47,10 @@ class Enrol extends Model
 
     public static function programList() {
         return [
+            'PREP' => 'Preschool',
+            'ELEM' => 'Elementary',
+            'JHS' => 'Junior Highschool',
+            'SHS' => 'Senior Highschool',
             'BSA' => 'Bachelor of Science in Accountancy',
             'BSC-MA' => 'Bachelor of Science in Commerce Major in Mgt. Accounting',
             'BSBA-MM' =>'Bachelor of Science in Business Administration Major in Marketing Mgt.',
@@ -65,6 +69,30 @@ class Enrol extends Model
             'BSED-Fil'=>'Bachelor of Secondary Education Major in Filipino',
             'BSED-Soc'=>'Bachelor of Secondary Education Major in Social Studies',
             'BSED-Val'=>'Bachelor of Secondary Education Major in Values Education',
+        ];
+    }
+
+    public static function levelList() {
+        return [
+            'k1' => 'Kindergarten 1',
+            'k2' => 'Kindergarten 2',
+            'g1' => 'Grade 1',
+            'g2' => 'Grade 2',
+            'g3' => 'Grade 3',
+            'g4' => 'Grade 4',
+            'g5' => 'Grade 5',
+            'g6' => 'Grade 6',
+            'g7' => 'Grade 7',
+            'g8' => 'Grade 8',
+            'g9' => 'Grade 9',
+            'g10' => 'Grade 10',
+            'g11' => 'Grade 11',
+            'g12' => 'Grade 12',
+            'c1' => '1st Year College',
+            'c2' => '2nd Year College',
+            'c3' => '3rd Year College',
+            'c4' => '4th Year College',
+            'Q' => 'Qualifying',
         ];
     }
 

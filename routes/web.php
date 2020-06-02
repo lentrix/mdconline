@@ -36,10 +36,17 @@ Route::group(['middleware'=>'auth'], function() {
 
     Route::get('/backend/enrol/{enrol}', 'EnrolmentController@show');
 
-
     Route::post('/verify-payment', 'EnrolmentController@verifyPayment')->middleware('finance');
 
     Route::get('/backend/student/{student}', 'StudentController@view');
-    Route::post('/backend/student/{student}/update-id','StudentController@updateID')->middleware('registrar');
-    Route::post('/verify-records', 'EnrolmentController@verifyRecords')->middleware('registrar');
+
+    Route::get('/backend/process/{enrol}', 'EnrolmentController@process');
+
+    Route::post('/backend/process/{enrol}', 'EnrolmentController@finalize');
+
+    Route::group(['middleware'=>'registrar'], function() {
+        Route::post('/backend/student/{student}/update-id','StudentController@updateID');
+        Route::post('/verify-records', 'EnrolmentController@verifyRecords');
+    });
+
 });

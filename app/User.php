@@ -51,4 +51,8 @@ class User extends Authenticatable
     public static function scopes() {
         return static::$scopes;
     }
+
+    public function inScope($program) {
+        return in_array($program, static::scopes()[$this->scope]);
+    }
 }

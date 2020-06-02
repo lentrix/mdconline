@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Enrol;
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class EnrolmentController extends Controller
 {
@@ -96,5 +98,33 @@ class EnrolmentController extends Controller
         $enrol->save();
 
         return redirect("/backend/enrol/$enrol->id")->with('Info','The records for this enrolment has been verified.');
+    }
+
+    public function process(Enrol $enrol) {
+        $user = User::find(auth()->user()->id);
+
+        if(!$user->inScope($enrol->program)) {
+            throw new UnauthorizedHttpException("You are not allowed to process this enrolment.");
+        }
+
+        if(!($enrol->payment_verified_by && $enrol->records_verified_by)) {
+            throw new UnauthorizedHttpException("", "You cannot process and unverified enrolment.");
+        }
+
+        $enrol->status = "processing";
+        $enrol->save();
+
+        return view("enrol.processing", compact('enrol'));
+    }
+
+    public function finalize(Enrol $enrol, Request $request) {
+        $this->validate($request, ['study_load'=>'required']);
+
+        $request->study_load->storeAs('study_load', $enrol->id . ".jpg");
+
+        $enrol->status = "finalized";
+        $enrol->save();
+
+        return redirect('/dashboard')->with('Info','Enrolment# ' . $enrol->id . " has been finalized.");
     }
 }

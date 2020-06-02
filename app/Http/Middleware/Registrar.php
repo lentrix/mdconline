@@ -17,7 +17,7 @@ class Registrar
     public function handle($request, Closure $next)
     {
         if(auth()->user()->scope != "registrar") {
-            throw new AccessDeniedHttpException("This action can only be performed by a finance personel.");
+            throw new AccessDeniedHttpException("This action can only be performed by a registrar personel.");
         }else {
             return $next($request);
         }

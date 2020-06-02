@@ -11,10 +11,16 @@
         <h3>Enrolment Status</h3>
         <table class="table table-bordered table-striped">
             <tr>
-                <th>Pending Enrolment</th><td class="text-center">{{$counts['pending']}}</td>
+                <th>Pending Enrolment</th>
+                <td class="text-center">
+                    <a href="'{{url("/dashboard?status=pending")}}'" class="badge badge-primary">{{$counts['pending']}}</a>
+                </td>
             </tr>
             <tr>
-                <th>Enrolment Under Processing</th><td class="text-center">{{$counts['processing']}}</td>
+                <th>Enrolment Under Processing</th>
+                <td class="text-center">
+                    <a href='{{url("/dashboard?status=processing")}}' class="badge badge-primary">{{$counts['processing']}}</a>
+                </td>
             </tr>
             <tr>
                 <th>Finalized Enrolment</th><td class="text-center">{{$counts['finalized']}}</td>

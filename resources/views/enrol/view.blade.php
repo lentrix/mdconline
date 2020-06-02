@@ -80,6 +80,12 @@
                 </td>
             </tr>
         </table>
+
+        @if(auth()->user()->inScope($enrol->program) && in_array($enrol->status, ["pending","processing"]))
+        <a href='{{url("/backend/process/$enrol->id")}}' class="btn btn-primary">
+            Process Enrolment
+        </a>
+        @endif
     </div>
 
     <div class="col-md-7">

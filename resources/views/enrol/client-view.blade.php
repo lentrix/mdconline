@@ -16,11 +16,6 @@
                 <th>ID Number</th>
                 <td>
                     {{str_pad($enrol->student->id,7,'0',STR_PAD_LEFT)}}
-                    @if(auth()->user()->scope=="registrar")
-                        <a href='{{url("/backend/student/{$enrol->student->id}")}}'
-                                class="btn btn-sm btn-info float-right"
-                                title="View student record.">&#128196;</a>
-                    @endif
                 </td>
             </tr>
             <tr>
@@ -55,28 +50,12 @@
                 <th>Payment Verified</th>
                 <td>
                     {{$enrol->verificationStatus()}}
-                    @if(auth()->user()->scope=="finance" && !$enrol->payment_verified_by)
-                        <div class="float-right">
-                            {!! Form::open(['url'=>'/verify-payment', 'method'=>'post']) !!}
-                                {{Form::hidden('id', $enrol->id)}}
-                                <button type="submit" title="Verify Payment">&#10004;</button>
-                            {!! Form::close() !!}
-                        </div>
-                    @endif
                 </td>
             </tr>
             <tr>
                 <th>Records Verified</th>
                 <td>
                     {{$enrol->recordsStatus()}}
-                    @if(auth()->user()->scope=="registrar" && !$enrol->records_verified_by)
-                        <div class="float-right">
-                            {!! Form::open(['url'=>'/verify-records', 'method'=>'post']) !!}
-                                {{Form::hidden('id', $enrol->id)}}
-                                <button type="submit" title="Verify Records">&#10004;</button>
-                            {!! Form::close() !!}
-                        </div>
-                    @endif
                 </td>
             </tr>
             <tr>
@@ -84,12 +63,6 @@
                 <td>{{$enrol->code}}</td>
             </tr>
         </table>
-
-        @if(!in_array(auth()->user()->scope, ['finance','registrar','all']) && auth()->user()->inScope($enrol->program) && in_array($enrol->status, ["pending","processing"]))
-        <a href='{{url("/backend/process/$enrol->id")}}' class="btn btn-primary">
-            Process Enrolment
-        </a>
-        @endif
     </div>
 
     <div class="col-md-7">

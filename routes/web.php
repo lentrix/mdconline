@@ -28,6 +28,9 @@ Route::post('/registration', 'StudentController@store');
 Route::get('/enrol', 'EnrolmentController@index');
 Route::post('/enrol/verify', 'EnrolmentController@verify');
 
+Route::get('/status', 'EnrolmentController@status');
+Route::post('/status', 'EnrolmentController@accessStatus');
+
 
 Route::group(['middleware'=>'auth'], function() {
     Route::get('/dashboard', 'UserController@dashboard');

@@ -127,4 +127,20 @@ class EnrolmentController extends Controller
 
         return redirect('/dashboard')->with('Info','Enrolment# ' . $enrol->id . " has been finalized.");
     }
+
+    public function status() {
+        return view('enrol.status');
+    }
+
+    public function accessStatus(Request $request) {
+        $this->validate($request, ['access_code'=>'required']);
+
+        $enrol = Enrol::where('code', $request['access_code'])->first();
+
+        if($enrol) {
+            return view('enrol.client-view', compact('enrol'));
+        }else {
+            return redirect()->back()->with('Error','Sorry! The Access Code you entered cannot be found.');
+        }
+    }
 }

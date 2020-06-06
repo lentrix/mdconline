@@ -16,7 +16,7 @@ $from = $mdc->query("SELECT idnum, idext, lname, fname, mi
         WHERE idnum IN (SELECT idnum FROM stud_enrol
             WHERE sem_code > 18)")->fetchAll();
 
-$qry = $online->prepare("INSERT INTO students (id, idext, lname, fname, mname, created_at, updated_at)
+$qry = $online->prepare("INSERT INTO enrol_students (id, idext, lname, fname, mname, created_at, updated_at)
         VALUES (:id, :idext, :lname, :fname, :mname, NOW(),NOW())");
 
 foreach($from as $s) {

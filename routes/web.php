@@ -31,6 +31,7 @@ Route::post('/enrol/verify', 'EnrolmentController@verify');
 Route::get('/status', 'EnrolmentController@status');
 Route::post('/status', 'EnrolmentController@accessStatus');
 
+Route::get('/payment-channels', 'SiteController@paymentChannels');
 
 Route::group(['middleware'=>'auth'], function() {
     Route::get('/dashboard', 'UserController@dashboard');
@@ -50,6 +51,10 @@ Route::group(['middleware'=>'auth'], function() {
     Route::group(['middleware'=>'registrar'], function() {
         Route::post('/backend/student/{student}/update-id','StudentController@updateID');
         Route::post('/verify-records', 'EnrolmentController@verifyRecords');
+    });
+
+    Route::group(['middleware'=>'admin'], function() {
+        Route::get('/users','UserController@index');
     });
 
 });

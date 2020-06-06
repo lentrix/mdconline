@@ -53,4 +53,9 @@ class UserController extends Controller
         auth()->logout();
         return redirect('/');
     }
+
+    public function index() {
+        $users = User::orderBy('fullname')->get();
+        return view('users.index', compact('users'));
+    }
 }

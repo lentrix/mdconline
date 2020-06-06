@@ -13,24 +13,23 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url('/status')}}">Status</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/faq')}}">FAQ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('announcements')}}">Announcements</a>
-                </li>
 
                 @if(auth()->guest())
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/login')}}">Login</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/login')}}">Login</a>
+                    </li>
                 @else
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/dashboard')}}">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url('/logout')}}">[Logout : {{auth()->user()->username}}]</a>
-                </li>
+                    @if(auth()->user()->scope=="all")
+                        <li class="nav-item">
+                            <a href="{{url('/users')}}" class="nav-link">Users</a>
+                        </li>
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/dashboard')}}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{url('/logout')}}">[Logout : {{auth()->user()->username}}]</a>
+                    </li>
                 @endif
 
             </ul>

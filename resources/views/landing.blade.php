@@ -11,14 +11,14 @@
         <p>
             With the implementation of
             the 'New Normal' global community protocols, we hope to provide our
-            <strong>Potential College Students</strong> with
-            a facility to streamline the enrolment process without setting foot on campus premises.
+            <strong>Potential Students</strong> with
+            a facility to a streamlined enrolment process without setting foot on campus premises.
         </p>
         <p>
             Please take note that part of the online enrollment process is the submission of
             scanned copy or picture (.jpg format) of the proof of payment (for entrance fee) of Php500. You
             may place your payment through these
-            <a href="{{url('/payment-channels')}}">payment channels</a>.
+            <a href="{{url('/payment-channels')}}">PAYMENT CHANNELS</a>.
         </p>
         <p>
             For more information, check our FAQ page or contact us at the following:

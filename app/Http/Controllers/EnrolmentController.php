@@ -57,7 +57,6 @@ class EnrolmentController extends Controller
             'phone' => 'required',
             'program' => 'required',
             'level' => 'required',
-            'file' => 'required'
         ]);
 
         $enrol = Enrol::create([

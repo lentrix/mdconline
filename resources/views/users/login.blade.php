@@ -4,6 +4,9 @@
 
 <div class="row">
     <div class="col-md-4 offset-md-4">
+
+        <p style="color: #888; text-align: center">This login facility is your MDC personnel only.</p>
+
         <div class="card">
             <div class="card-header bg-primary text-white">
                 &#128101; User Login
